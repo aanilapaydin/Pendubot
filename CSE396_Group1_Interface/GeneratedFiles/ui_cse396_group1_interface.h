@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'cse396_group1_interface.ui'
 **
-** Created: Tue 6. May 12:33:44 2014
+** Created: Sun 18. May 12:16:51 2014
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -31,6 +31,7 @@ class Ui_CSE396_Group1_Interface
 public:
     QWidget *centralWidget;
     QCustomPlot *myPlot;
+    QLabel *label_2;
     QLabel *deadmanLabel;
     QLabel *hardwareEdit;
     QLabel *k1Label;
@@ -42,7 +43,8 @@ public:
     QLabel *initialLabel;
     QLabel *stateLabel;
     QLabel *stateEdit;
-    QWidget *myWidget;
+    QCustomPlot *myPlot2;
+    QLabel *label;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -56,7 +58,10 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         myPlot = new QCustomPlot(centralWidget);
         myPlot->setObjectName(QString::fromUtf8("myPlot"));
-        myPlot->setGeometry(QRect(500, 0, 300, 350));
+        myPlot->setGeometry(QRect(400, 0, 400, 350));
+        label_2 = new QLabel(myPlot);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(350, 330, 46, 13));
         deadmanLabel = new QLabel(centralWidget);
         deadmanLabel->setObjectName(QString::fromUtf8("deadmanLabel"));
         deadmanLabel->setGeometry(QRect(10, 430, 210, 30));
@@ -124,9 +129,12 @@ public:
         font3.setBold(true);
         font3.setWeight(75);
         stateEdit->setFont(font3);
-        myWidget = new QWidget(centralWidget);
-        myWidget->setObjectName(QString::fromUtf8("myWidget"));
-        myWidget->setGeometry(QRect(0, 0, 500, 350));
+        myPlot2 = new QCustomPlot(centralWidget);
+        myPlot2->setObjectName(QString::fromUtf8("myPlot2"));
+        myPlot2->setGeometry(QRect(0, 0, 400, 350));
+        label = new QLabel(myPlot2);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(320, 330, 70, 13));
         CSE396_Group1_Interface->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(CSE396_Group1_Interface);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -147,6 +155,7 @@ public:
     void retranslateUi(QMainWindow *CSE396_Group1_Interface)
     {
         CSE396_Group1_Interface->setWindowTitle(QApplication::translate("CSE396_Group1_Interface", "CSE396_Group1_Interface", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("CSE396_Group1_Interface", "Encoder", 0, QApplication::UnicodeUTF8));
         deadmanLabel->setText(QApplication::translate("CSE396_Group1_Interface", "Deadman switch Connected:", 0, QApplication::UnicodeUTF8));
         hardwareEdit->setText(QApplication::translate("CSE396_Group1_Interface", "TextLabel", 0, QApplication::UnicodeUTF8));
         k1Label->setText(QApplication::translate("CSE396_Group1_Interface", "K1:", 0, QApplication::UnicodeUTF8));
@@ -156,6 +165,7 @@ public:
         initialLabel->setText(QApplication::translate("CSE396_Group1_Interface", "Initial Values", 0, QApplication::UnicodeUTF8));
         stateLabel->setText(QApplication::translate("CSE396_Group1_Interface", "State", 0, QApplication::UnicodeUTF8));
         stateEdit->setText(QApplication::translate("CSE396_Group1_Interface", "System is not ready", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("CSE396_Group1_Interface", "Motor Encoder", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

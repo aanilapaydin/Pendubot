@@ -18,7 +18,7 @@ IrrlichtWidget::IrrlichtWidget()
 	MEventReceiver receiver;
 	//Root objeyi oluþtur
 	device = createDevice(EDT_OPENGL/*device type OPEN_GL de olabilir*/, 
-							dimension2d<u32>(500, 350)/*windows size*/, 
+							dimension2d<u32>(1024, 768)/*windows size*/, 
 							16/*bits 16 or 32*/,
 							false/*is fullscreen?*/, 
 							false/*is stencil buffer for drawing shadows*/, 

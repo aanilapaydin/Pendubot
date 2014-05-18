@@ -41,8 +41,7 @@ public:
     void set_deadmanConnected(bool newDeadCon);
     void set_deadmanPressed(bool newDeadPres);
     void sleep(unsigned int mseconds);
-    void setupRealtimeData(QCustomPlot *customPlot);
-
+    void setupRealtimeData();
 
 private:
     Ui::CSE396_Group1_Interface *ui;

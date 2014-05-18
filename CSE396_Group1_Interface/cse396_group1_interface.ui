@@ -17,12 +17,25 @@
    <widget class="QCustomPlot" name="myPlot" native="true">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>400</x>
       <y>0</y>
-      <width>300</width>
+      <width>400</width>
       <height>350</height>
      </rect>
     </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>330</y>
+       <width>46</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Encoder</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="deadmanLabel">
     <property name="geometry">
@@ -253,15 +266,28 @@
      <string>System is not ready</string>
     </property>
    </widget>
-   <widget class="QWidget" name="myWidget" native="true">
+   <widget class="QCustomPlot" name="myPlot2" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>500</width>
+      <width>400</width>
       <height>350</height>
      </rect>
     </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>330</y>
+       <width>70</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Motor Encoder</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

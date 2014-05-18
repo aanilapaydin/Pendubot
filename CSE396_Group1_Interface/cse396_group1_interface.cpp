@@ -26,7 +26,7 @@ CSE396_Group1_Interface::CSE396_Group1_Interface(QWidget *parent) :
 	if(s == "fil ") {
 		connect(_vis_timer, SIGNAL (timeout ()), this, SLOT (system_initialization()));
 		_vis_timer->start(5);
-		setupRealtimeData(ui->myPlot);
+		setupRealtimeData();
 	}
 }
 
@@ -122,40 +122,45 @@ void CSE396_Group1_Interface::sleep(unsigned int mseconds)
     while (goal > clock());
 }
 
-void CSE396_Group1_Interface::setupRealtimeData(QCustomPlot *customPlot)
+void CSE396_Group1_Interface::setupRealtimeData()
 {
-  customPlot->addGraph(); // blue line
-  customPlot->graph(0)->setPen(QPen(Qt::blue));
-  customPlot->graph(0)->setBrush(QBrush(QColor(240, 255, 200)));
-  customPlot->graph(0)->setAntialiasedFill(false);
-  customPlot->addGraph(); // red line
-  customPlot->graph(1)->setPen(QPen(Qt::red));
-  customPlot->graph(0)->setChannelFillGraph(customPlot->graph(1));
+	
+  ui->myPlot->addGraph(); // blue line
+  ui->myPlot->graph(0)->setPen(QPen(Qt::blue));
+  ui->myPlot->graph(0)->setBrush(QBrush(QColor(240, 255, 200)));
+  ui->myPlot->graph(0)->setAntialiasedFill(false);
+  ui->myPlot2->addGraph(); 
+  ui->myPlot2->graph(0)->setPen(QPen(Qt::red));
+  ui->myPlot2->graph(0)->setBrush(QBrush(QColor(240, 255, 200)));
+  ui->myPlot2->graph(0)->setAntialiasedFill(false);
 
-  customPlot->addGraph(); // blue dot
-  customPlot->graph(2)->setPen(QPen(Qt::blue));
-  customPlot->graph(2)->setLineStyle(QCPGraph::lsNone);
-  customPlot->graph(2)->setScatterStyle(QCPScatterStyle::ssDisc);
-  customPlot->addGraph(); // red dot
-  customPlot->graph(3)->setPen(QPen(Qt::red));
-  customPlot->graph(3)->setLineStyle(QCPGraph::lsNone);
-  customPlot->graph(3)->setScatterStyle(QCPScatterStyle::ssDisc);
+  ui->myPlot->addGraph(); // blue dot
+  ui->myPlot->graph(1)->setPen(QPen(Qt::blue));
+  ui->myPlot->graph(1)->setLineStyle(QCPGraph::lsNone);
+  ui->myPlot->graph(1)->setScatterStyle(QCPScatterStyle::ssDisc);
+  ui->myPlot2->addGraph(); // red dot
+  ui->myPlot2->graph(1)->setPen(QPen(Qt::red));
+  ui->myPlot2->graph(1)->setLineStyle(QCPGraph::lsNone);
+  ui->myPlot2->graph(1)->setScatterStyle(QCPScatterStyle::ssDisc);
 
-  customPlot->xAxis->setTickLabelType(QCPAxis::ltDateTime);
-  customPlot->xAxis->setNumberFormat("g");
-  customPlot->xAxis->setAutoTickStep(false);
-  customPlot->xAxis->setTickStep(1);
-  customPlot->axisRect()->setupFullAxesBox();
-
+  ui->myPlot->xAxis->setTickLabelType(QCPAxis::ltDateTime);
+  ui->myPlot->xAxis->setNumberFormat("g");
+  ui->myPlot->xAxis->setAutoTickStep(false);
+  ui->myPlot->xAxis->setTickStep(1);
+  ui->myPlot->axisRect()->setupFullAxesBox();
+  ui->myPlot2->xAxis->setTickLabelType(QCPAxis::ltDateTime);
+  ui->myPlot2->xAxis->setNumberFormat("g");
+  ui->myPlot2->xAxis->setAutoTickStep(false);
+  ui->myPlot2->xAxis->setTickStep(1);
+  ui->myPlot2->axisRect()->setupFullAxesBox();
   // make left and bottom axes transfer their ranges to right and top axes:
-  connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
-  connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
+  connect(ui->myPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->myPlot->xAxis2, SLOT(setRange(QCPRange)));
+  connect(ui->myPlot2->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->myPlot2->xAxis2, SLOT(setRange(QCPRange)));
 
   // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
   connect(&dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
   dataTimer.start(0); // Interval 0 means to refresh as fast as possible
 }
-
 void CSE396_Group1_Interface::realtimeDataSlot()
 {
 
@@ -183,24 +188,25 @@ void CSE396_Group1_Interface::realtimeDataSlot()
 
 		// add data to lines:
 		ui->myPlot->graph(0)->addData(key, value0);
-		ui->myPlot->graph(1)->addData(key, value1);
+		ui->myPlot2->graph(0)->addData(key, value1);
 		// set data of dots:
-		ui->myPlot->graph(2)->clearData();
-		ui->myPlot->graph(2)->addData(key, value0);
-		ui->myPlot->graph(3)->clearData();
-		ui->myPlot->graph(3)->addData(key, value1);
+		ui->myPlot->graph(1)->clearData();
+		ui->myPlot->graph(1)->addData(key, value0);
+		ui->myPlot2->graph(1)->clearData();
+		ui->myPlot2->graph(1)->addData(key, value1);
 		// remove data of lines that's outside visible range:
 		ui->myPlot->graph(0)->removeDataBefore(key-4);
-		ui->myPlot->graph(1)->removeDataBefore(key-4);
+		ui->myPlot2->graph(0)->removeDataBefore(key-4);
 		// rescale value (vertical) axis to fit the current data:
 		ui->myPlot->graph(0)->rescaleValueAxis();
-		ui->myPlot->graph(1)->rescaleValueAxis(true);
+		ui->myPlot2->graph(0)->rescaleValueAxis(true);
 		lastPointKey = key;
   }
   // make key axis range scroll with the data (at a constant range size of 8):
   ui->myPlot->xAxis->setRange(key+1, 4, Qt::AlignRight);
   ui->myPlot->replot();
-
+  ui->myPlot2->xAxis->setRange(key+1, 4, Qt::AlignRight);
+  ui->myPlot2->replot();
   // calculate frames per second:
   static double lastFpsKey;
   static int frameCount;

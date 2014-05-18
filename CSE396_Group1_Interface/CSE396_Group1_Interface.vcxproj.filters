@@ -82,6 +82,9 @@
     <CustomBuild Include="qcustomplot.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="irrlichtWidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cse396_group1_interface.ui">
@@ -93,9 +96,6 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="serialport.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="irrlichtWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
