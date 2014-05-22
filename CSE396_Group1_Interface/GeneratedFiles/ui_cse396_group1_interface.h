@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'cse396_group1_interface.ui'
 **
-** Created: Sun 18. May 12:16:51 2014
+** Created: Mon 19. May 19:31:34 2014
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
